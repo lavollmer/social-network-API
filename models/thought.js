@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 //reactionSchema subdocument
-const reactionSchema = new mongoose.Schema({
+const reactionSchema = Schema({
   reactionID: { id: Schema.Types.ObjectId },
   reactionBody: { type: String, required: true, maxlength: 280 },
   username: { type: String, required: true },
