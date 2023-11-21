@@ -43,6 +43,8 @@ This project was done in conjunction with the U of MN Bootcamp Fall 2023.
 
 Tutoring services and TAs were used to help debug, help with logic and coding.
 
+Validate Email: https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
+
   <a id="license"></a>
 
 ## License
