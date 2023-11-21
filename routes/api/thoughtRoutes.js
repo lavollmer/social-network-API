@@ -27,15 +27,15 @@ router.route('/:thoughtsId').get(getSingleThought)
 router.route('/:thoughtsId').post(newThought);
 
 // /api/thoughts/:thoughtsId
-router.route('/:thoughtsId').put(updateThought);
+// router.route('/:thoughtsId').put(updateThought);
 
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').delete(removeThought);
 
 // /api/thoughts/:thoughtsId/reactions
-router.route('/:thoughtsId').put(createReaction);
+// router.route('/:thoughtsId').put(createReaction);
 
 // /api/thoughts/:thoughtsId/reactions
-router.route('/:thoughtsId').delete(deleteReaction);
+// router.route('/:thoughtsId').delete(deleteReaction);
 
 module.exports = router;

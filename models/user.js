@@ -17,7 +17,7 @@ const userSchema = new Schema(
       required: 'Email address is required',
       validate: function (validateEmail) {
         const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        return emailRegex.test(value);
+        return emailRegex.test(validateEmail);
       }
     },
     //Array of _id values referencing the Thought model
@@ -31,13 +31,14 @@ const userSchema = new Schema(
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'user'
+        ref: 'user',
       }
     ],
   },
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
   }
 );

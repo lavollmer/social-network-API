@@ -2,12 +2,14 @@ const express = require('express');
 const db = require('./config/connection.js');
 // Require model
 const { Thought, User } = require('./models');
+const routes = require('./routes');
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(routes);
 
 // Finds all users
 // app.get('/all-users', async (req, res) => {

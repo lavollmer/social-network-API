@@ -9,7 +9,7 @@ const headCount = async () => {
 }
 
 module.exports = {
-  // Get all users
+  // Get all thoughts
   async getAllThoughts(req, res) {
     try {
       const thoughts = await Thought.find();
@@ -19,7 +19,7 @@ module.exports = {
         headCount: await headCount(),
       };
 
-      res.json(userObj);
+      res.json(thoughtObj);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
