@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose');
 
 //reactionSchema subdocument
 const reactionSchema = new mongoose.Schema({
-  reactionID: Schema.Types.ObjectId,
+  reactionID: { id: Schema.Types.ObjectId },
   reactionBody: { type: String, required: true, maxlength: 280 },
   username: { type: String, required: true },
   createdAt: { type: Date, default: Date.now }
@@ -27,9 +27,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
     //Array of nested documents created with the reactionSchema
-    reactions: {
-
-    }
+    reactions: [reactionSchema]
   },
   {
     toJSON: {
@@ -48,3 +46,4 @@ const Thought = model('thought', thoughtSchema);
 
 //exporting Thought Model
 module.exports = Thought;
+
