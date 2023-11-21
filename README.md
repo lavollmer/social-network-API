@@ -47,6 +47,8 @@ Validate Email: https://stackoverflow.com/questions/18022365/mongoose-validate-e
 Timestamps: https://mongoosejs.com/docs/timestamps.html
 Date Code: https://mongoosejs.com/docs/guide.html
 
+Activity 17 inspired subdocument code and information. 
+
 
   <a id="license"></a>
 
