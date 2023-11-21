@@ -11,6 +11,10 @@ const {
   updateThought,
   //DELETE to remove Thought by its _id
   removeThought,
+  //POST to create a reaction stored in a single thought's reactions array field
+  createReaction,
+  //DELETE to pull and remove a reaction by the reaction's reactionId value
+  deleteReaction,
 } = require('../../controllers/thoughtController');
 
 // /api/thoughts
@@ -27,5 +31,11 @@ router.route('/:thoughtsId').put(updateThought);
 
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').delete(removeThought);
+
+// /api/thoughts/:thoughtsId/reactions
+router.route('/:thoughtsId').put(createReaction);
+
+// /api/thoughts/:thoughtsId/reactions
+router.route('/:thoughtsId').delete(deleteReaction);
 
 module.exports = router;
