@@ -29,8 +29,7 @@ module.exports = {
   // Get a single thought
   async getSingleThought(req, res) {
     try {
-      //ThoughtID???
-      const thought = await Thought.findOne({ _id: req.params.thoughtId })
+      const thought = await Thought.findOne({ id: req.params._id })
         .select('-__v');
 
       if (!thought) {
@@ -39,7 +38,6 @@ module.exports = {
 
       res.json({
         thought,
-        thought: await thought(req.params.thoughtId),
       });
     } catch (err) {
       console.log(err);
@@ -68,23 +66,23 @@ module.exports = {
   // Delete a thought and remove them the social network
   async removeThought(req, res) {
     try {
-      const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
+      const thought = await Thought.findOneAndDelete({ id: req.params._id });
 
       if (!thought) {
         return res.status(404).json({ message: 'No such thought exists' });
       }
 
-      const reaction = await Thought.findOneAndUpdate(
-        { thoughts: req.params.reactionId },
-        { $pull: { thoughts: req.params.reactionId } },
-        { new: true }
-      );
+      // const reaction = await Thought.findOneAndUpdate(
+      //   { thoughts: req.params.reactionId },
+      //   { $pull: { thoughts: req.params.reactionId } },
+      //   { new: true }
+      // );
 
-      if (!reaction) {
-        return res.status(404).json({
-          message: 'Thought deleted, but no reactions found',
-        });
-      }
+      // if (!reaction) {
+      //   return res.status(404).json({
+      //     message: 'Thought deleted, but no reactions found',
+      //   });
+      // }
 
       res.json({ message: 'Thought successfully deleted' });
     } catch (err) {

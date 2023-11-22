@@ -24,7 +24,7 @@ router.route('/').get(getAllThoughts)
 router.route('/:thoughtsId').get(getSingleThought)
 
 // /api/thoughts/:thoughtsId
-router.route('/:thoughtsId').post(newThought);
+router.route('/').post(newThought);
 
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').put(updateThought);
