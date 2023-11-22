@@ -114,8 +114,8 @@ module.exports = {
   async removeNewFriend(req, res) {
     try {
       const friend = await User.findOneAndUpdate(
-        { _id: req.params._id },
-        { $pull: { friends: req.params._id } },
+        { _id: req.params.userId },
+        { $pull: { friends: req.params.friendId } },
         { new: true }
       );
 
