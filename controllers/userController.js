@@ -43,6 +43,16 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
+  //update a user
+  async updateUser(req, res) {
+    try {
+      // find and update by ID, set (reset) the body, and new is a new version set to true
+      const user = await User.findOneAndUpdate({ id: req.params._id }, { $set: req.body }, { new: true })
+      res.json(user);
+    } catch (err) {
+      res.status(500).json(err.message);
+    }
+  },
   // create a new user
   async newUser(req, res) {
     try {
@@ -52,20 +62,10 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-  //update a user
-  async updateUser(req, res) {
-    try {
-      // find and update by ID, set (reset) the body, and new is a new version set to true
-      const user = await User.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true })
-      res.json(user);
-    } catch (err) {
-      res.status(500).json(err.message);
-    }
-  },
   // Delete a user and remove them the social network
   async removeUser(req, res) {
     try {
-      const user = await User.findOneAndDelete({ _id: req.params._id });
+      const user = await User.findOneAndDelete({ id: req.params._id });
 
       if (!user) {
         return res.status(404).json({ message: 'No such user exists' });
@@ -83,7 +83,7 @@ module.exports = {
         });
       }
 
-      res.json({ message: 'Student successfully deleted' });
+      res.json({ message: 'User successfully deleted' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

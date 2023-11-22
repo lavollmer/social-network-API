@@ -82,9 +82,8 @@ module.exports = {
   async createReaction(req, res) {
     try {
       // finding my ID in the Thought Model
-      const thought = await Thought.findOne({ id: req.params._id }).select('-__v');
+      const thought = await Thought.findOne({ id: req.params._id });
       console.log(thought);
-      console.log(reactionID);
       //calling the reaction array through the thought Model
       const reaction = thought.reactions;
       console.log(reaction);
