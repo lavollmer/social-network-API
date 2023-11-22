@@ -1,5 +1,5 @@
 const { ObjectId } = require('mongoose').Types;
-const { Thought } = require('../models/thought');
+const { Thought } = require('../models');
 
 // Aggregate function to get the number of thoughts overall
 const headCount = async () => {
@@ -65,7 +65,7 @@ module.exports = {
   // Delete a thought and remove them the social network
   async removeThought(req, res) {
     try {
-      const thought = await Thought.findOneAndDelete({ _id: req.params._id });
+      const thought = await Thought.findOneAndDelete({ id: req.params._id });
 
       if (!thought) {
         return res.status(404).json({ message: 'No such thought exists' });

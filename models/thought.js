@@ -1,8 +1,11 @@
 const { Schema, model } = require('mongoose');
+const { v4: uuidv4 } = require('uuid');
+
+const reactionID = uuidv4();
 
 //reactionSchema subdocument
 const reactionSchema = new Schema({
-  reactionID: { type: Schema.Types.ObjectId },
+  reactionID: { reactionID },
   reactionBody: { type: String, required: true, maxlength: 280 },
   username: { type: String, required: true },
   createdAt: { type: Date, default: Date.now }
@@ -48,20 +51,20 @@ thoughtSchema.virtual('reactionCount').get(function () {
 const Thought = model('thought', thoughtSchema);
 
 //Thought Model to create new instance including subdocument
-const reactionData = [
-  {
-    reactionID: '655d6d427bac3b72067c00d6',
-    reactionBody: 'Wow thats interesting',
-    username: 'willow123',
-    createdAt: '11/21/23'
-  }
-]
+// const reactionData = [
+//   {
+//     reactionID: '655d6d427bac3b72067c00d6',
+//     reactionBody: 'Wow thats interesting',
+//     username: 'willow123',
+//     createdAt: '11/21/23'
+//   }
+// ]
 
 //creating data in Thought Model
-Thought
-  .create({ thoughtText: "I really love playing catch", createdAt: "11/20/23", username: "picasso", reactions: reactionData })
-  .then(data => console.log(data))
-  .catch(err => console.error(err));
+// Thought
+//   .create({ thoughtText: "I really love playing catch", createdAt: "11/20/23", username: "picasso", reactions: reactionData })
+//   .then(data => console.log(data))
+//   .catch(err => console.error(err));
 
 //exporting Thought Model
 module.exports = Thought;
