@@ -29,7 +29,7 @@ const thoughtSchema = new Schema(
       required: true,
     },
     //Array of nested documents created with the reactionSchema
-    reactions: [reactionSchema]
+    reactions: [reactionSchema],
   },
   {
     toJSON: {
