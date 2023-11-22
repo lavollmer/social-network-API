@@ -46,7 +46,7 @@ module.exports = {
       return res.status(500).json(err);
     }
   },
-  // create a new user
+  // create a new thought
   async newThought(req, res) {
     try {
       const thought = await Thought.create(req.body);
@@ -59,13 +59,13 @@ module.exports = {
   async updateThought(req, res) {
     try {
       // find and update by ID, set (reset) the body, and new is a new version set to true
-      const thought = await Thought.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }, { new: true })
+      const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtIdId }, { $set: req.body }, { new: true })
       res.json(thought);
     } catch (err) {
       res.status(55).json(err.message);
     }
   },
-  // Delete a user and remove them the social network
+  // Delete a thought and remove them the social network
   async removeThought(req, res) {
     try {
       const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
@@ -75,8 +75,8 @@ module.exports = {
       }
 
       const reaction = await Thought.findOneAndUpdate(
-        { users: req.params.userId },
-        { $pull: { users: req.params.userId } },
+        { thoughts: req.params.reactionId },
+        { $pull: { thoughts: req.params.reactionId } },
         { new: true }
       );
 
@@ -87,6 +87,35 @@ module.exports = {
       }
 
       res.json({ message: 'Thought successfully deleted' });
+    } catch (err) {
+      console.log(err);
+      res.status(500).json(err);
+    }
+  },
+  //Add a reaction
+
+  //Delete a reaction
+  async deleteReaction(req, res) {
+    try {
+      // const thought = await Thought.findOneAndRemove({ _id: req.params.thoughtId });
+
+      // if (!thought) {
+      //   return res.status(404).json({ message: 'No such thought exists' });
+      // }
+
+      const reaction = await Thought.findOneAndUpdate(
+        { reactionId: req.params.reactionId },
+        { $pull: { reactionId: req.params.reactionId } },
+        { new: true }
+      );
+
+      if (!reaction) {
+        return res.status(404).json({
+          message: 'No reactions found',
+        });
+      }
+
+      res.json({ message: 'Reaction successfully deleted' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);

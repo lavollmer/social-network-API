@@ -23,7 +23,7 @@ router.route('/').get(getAllThoughts)
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').get(getSingleThought)
 
-// /api/thoughts/:userId
+// /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').post(newThought);
 
 // /api/thoughts/:thoughtsId

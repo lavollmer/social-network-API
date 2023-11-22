@@ -35,20 +35,18 @@ Technical requirements of the website included:
 * POSTMAN
 * MVC Structure
 
-
   <a id="credits"></a>
 ## Credits
 
 This project was done in conjunction with the U of MN Bootcamp Fall 2023.
 
-Tutoring services and TAs were used to help debug, help with logic and coding.
+Tutoring services and TAs were used to help debug, help with logic and coding. 
 
 Validate Email: https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
 Timestamps: https://mongoosejs.com/docs/timestamps.html
 Date Code: https://mongoosejs.com/docs/guide.html
 
 Activity 17 inspired connection.js, index.js, and subdocument code/information. 
-
 
   <a id="license"></a>
 
