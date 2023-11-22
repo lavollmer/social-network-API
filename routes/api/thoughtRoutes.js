@@ -27,13 +27,13 @@ router.route('/:thoughtsId').get(getSingleThought)
 router.route('/:thoughtsId').post(newThought);
 
 // /api/thoughts/:thoughtsId
-// router.route('/:thoughtsId').put(updateThought);
+router.route('/:thoughtsId').put(updateThought);
 
 // /api/thoughts/:thoughtsId
 router.route('/:thoughtsId').delete(removeThought);
 
 // /api/thoughts/:thoughtsId/reactions
-// router.route('/:thoughtsId').put(createReaction);
+router.route('/:thoughtsId').delete(deleteReaction).post(createReaction)
 
 // /api/thoughts/:thoughtsId/reactions
 // router.route('/:thoughtsId').delete(deleteReaction);

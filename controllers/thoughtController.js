@@ -55,6 +55,16 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+  //update a thought
+  async updateThought(req, res) {
+    try {
+      // find and update by ID, set (reset) the body, and new is a new version set to true
+      const thought = await Thought.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }, { new: true })
+      res.json(thought);
+    } catch (err) {
+      res.status(55).json(err.message);
+    }
+  },
   // Delete a user and remove them the social network
   async removeThought(req, res) {
     try {

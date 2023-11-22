@@ -13,6 +13,7 @@ const {
   removeUser,
   //add new friend
   addNewFriend,
+  //remove new friend
   removeNewFriend,
 } = require('../../controllers/userController');
 
