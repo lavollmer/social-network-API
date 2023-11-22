@@ -29,7 +29,7 @@ module.exports = {
   // Get a single thought
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ id: req.params._id })
+      const thought = await Thought.findOne({ _id: req.params._id })
         .select('-__v');
 
       if (!thought) {
@@ -57,7 +57,7 @@ module.exports = {
   async updateThought(req, res) {
     try {
       // find and update by ID, set (reset) the body, and new is a new version set to true
-      const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtIdId }, { $set: req.body }, { new: true })
+      const thought = await Thought.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true })
       res.json(thought);
     } catch (err) {
       res.status(500).json(err.message);
@@ -66,7 +66,7 @@ module.exports = {
   // Delete a thought and remove them the social network
   async removeThought(req, res) {
     try {
-      const thought = await Thought.findOneAndDelete({ id: req.params._id });
+      const thought = await Thought.findOneAndDelete({ _id: req.params._id });
 
       if (!thought) {
         return res.status(404).json({ message: 'No such thought exists' });

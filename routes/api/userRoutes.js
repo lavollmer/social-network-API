@@ -33,7 +33,7 @@ router.route('/:userId').put(updateUser);
 router.route('/:userId').delete(removeUser);
 
 ///api/users /: userId / friends /: friendId
-// router.route('/:userId/friends/:friendId').delete(removeNewFriend).post(addNewFriend);
+router.route('/:userId/friends/:friendId').delete(removeNewFriend).post(addNewFriend);
 
 // ///api/users /: userId / friends /: friendId
 // router.route('/:userId').get(friends).post(removeNewFriend);
