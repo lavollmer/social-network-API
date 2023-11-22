@@ -5,7 +5,7 @@ const reactionID = uuidv4();
 
 //reactionSchema subdocument
 const reactionSchema = new Schema({
-  reactionID: [{ type: Schema.Types.ObjectId, ref: "thought" }],
+  reactionID: { type: Schema.Types.ObjectId },
   reactionBody: { type: String, required: true, maxlength: 280 },
   username: { type: String, required: true },
   createdAt: { type: Date, default: Date.now }

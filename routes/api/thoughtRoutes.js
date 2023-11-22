@@ -33,7 +33,7 @@ router.route('/:thoughtsId').put(updateThought);
 router.route('/:thoughtsId').delete(removeThought);
 
 // /api/thoughts/:thoughtsId/reactions
-router.route('/:thoughtsId').delete(deleteReaction).post(createReaction)
+router.route('/:thoughtsId/reactions').delete(deleteReaction).post(createReaction)
 
 
 module.exports = router;

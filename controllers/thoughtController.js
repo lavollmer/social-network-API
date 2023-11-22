@@ -117,11 +117,13 @@ module.exports = {
   //Delete a reaction
   async deleteReaction(req, res) {
     try {
-      const reaction = await Thought.findOneAndDelete(
-        { _id: req.params.thoughtId },
-        { $pull: { reactions: req.params.reactionId } },
+      const reaction = await Thought.findOneAndUpdate(
+        { id: req.params._id },
+        { $pull: { reactions: req.params.reactionID } },
         { new: true }
       );
+
+      console.log(reaction);
 
       if (!reaction) {
         return res.status(404).json({
