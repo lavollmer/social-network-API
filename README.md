@@ -26,7 +26,7 @@ GET Request for thoughts:
 
 * Github Repo:https://github.com/lavollmer/social-network-API
 
-* Video Demonstration: https://drive.google.com/file/d/1L7TRbsFJa2h9PfxZgbbg4uGaveY0U1Q8/view
+* Video Demonstration: https://watch.screencastify.com/v/NZpneFrpxCgNomJ7fDWk
 
   <a id="technicalrequirements"></a>
 ## Technical Requirements
