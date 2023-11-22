@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 //reactionSchema subdocument
-const reactionSchema = Schema({
+const reactionSchema = new Schema({
   reactionID: { type: Schema.Types.ObjectId },
   reactionBody: { type: String, required: true, maxlength: 280 },
   username: { type: String, required: true },
@@ -47,6 +47,22 @@ thoughtSchema.virtual('reactionCount').get(function () {
 //creating Model thought variable
 const Thought = model('thought', thoughtSchema);
 
+//Thought Model to create new instance including subdocument
+const reactionData = [
+  {
+    reactionID: { type: Schema.Types.ObjectId },
+    reactionBody: 'Wow thats interesting',
+    username: 'willow123',
+    createdAt: '11/21/23'
+  }
+]
+
+//creating data in Thought Model
+Thought
+  .create({ thoughtText: "I really love playing catch", createdAt: "11/20/23", username: "picasso", reactions: reactionData })
+  .then(data => console.log(data))
+  .catch(err => console.error(err));
+
 //exporting Thought Model
-module.exports = { Thought };
+module.exports = Thought;
 
