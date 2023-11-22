@@ -98,7 +98,14 @@ module.exports = {
       //adding the new reaction onto the variable
       reaction.push(newReaction);
 
-      res.json(reaction);
+      //update reactions
+      thought.reactions = reaction;
+
+      //save new information
+      await reaction.save();
+
+      //send back new reaction information
+      res.json(newReaction);
     } catch (err) {
       res.status(500).json(err);
     }
