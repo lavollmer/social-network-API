@@ -1,4 +1,4 @@
-const { ObjectId } = require('mongoose').Types;
+// const { ObjectId } = require('mongoose').Types;
 const { User } = require('../models');
 
 // Aggregate function to get the number of users overall
@@ -47,7 +47,7 @@ module.exports = {
   // create a new user
   async newUser(req, res) {
     try {
-      const user = await User.create(req.body);
+      const user = await User.create({ _id, username, email, thoughts, friends });
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
@@ -93,8 +93,19 @@ module.exports = {
   // create a new friend
   async addNewFriend(req, res) {
     try {
-      const user = await User.create(req.body);
-      res.json(user);
+      const { userId, friendId } = req.params;
+      const user = await User.findbyId({ userId });
+      const friend = await User.findbyId({ friendId });
+
+      if (!user || !friend) {
+        return res.status(404).json({ error: "User or friend does not exist" });
+      }
+
+      user.friends.push(friendId);
+
+      await user.save();
+
+      res.status(200).json({ response: "Friend successfully added" });
     } catch (err) {
       res.status(500).json(err);
     }

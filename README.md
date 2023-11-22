@@ -48,6 +48,40 @@ Date Code: https://mongoosejs.com/docs/guide.html
 
 Activity 17 inspired connection.js, index.js, and subdocument code/information. 
 
+Xpert Learning Assistant provided this code (some of it was changed or not needed):
+const User = require('../models/User');
+
+const addFriend = async (req, res) => {
+  try {
+    // Retrieve the user's _id and friend's _id from the request parameters
+    const { userId, friendId } = req.params;
+
+    // Retrieve the user's information from the database
+    const user = await User.findById(userId);
+
+    // Retrieve the friend's information from the database
+    const friend = await User.findById(friendId);
+
+    // Check if the user and friend exist
+    if (!user || !friend) {
+      return res.status(404).json({ error: 'User or friend not found' });
+    }
+
+    // Add the friend's _id to the user's friends array
+    user.friends.push(friendId);
+
+    // Save the updated user's information back to the database
+    await user.save();
+
+    res.status(200).json({ message: 'Friend added successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Server error' });
+  }
+};
+
+module.exports = { addFriend };
+
   <a id="license"></a>
 
 ## License
