@@ -72,28 +72,32 @@ module.exports = {
         return res.status(404).json({ message: 'No such thought exists' });
       }
 
-      // const reaction = await Thought.findOneAndUpdate(
-      //   { thoughts: req.params.reactionId },
-      //   { $pull: { thoughts: req.params.reactionId } },
-      //   { new: true }
-      // );
-
-      // if (!reaction) {
-      //   return res.status(404).json({
-      //     message: 'Thought deleted, but no reactions found',
-      //   });
-      // }
-
       res.json({ message: 'Thought successfully deleted' });
     } catch (err) {
       console.log(err);
       res.status(500).json(err);
     }
   },
+
   //Add a reaction
   async createReaction(req, res) {
     try {
-      const reaction = await Thought.create({ _id: req.params.reactionId });
+      // finding by ID in the Thought Model
+      const thought = await Thought.findById(req.params._id);
+      //calling the reaction array through the thought Model
+      const reaction = thought.reactions;
+
+      //creating a newReaction based on the body information in the Thought Model
+      const newReaction = {
+        reactionID: req.params._id,
+        reactionBody: req.body.reactionBody,
+        username: req.body.username,
+        createdAt: req.body.createdAt
+      }
+
+      //adding the new reaction onto the variable
+      reaction.push(newReaction);
+
       res.json(reaction);
     } catch (err) {
       res.status(500).json(err);
