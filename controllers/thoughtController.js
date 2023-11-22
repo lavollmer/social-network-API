@@ -82,8 +82,10 @@ module.exports = {
   //Add a reaction
   async createReaction(req, res) {
     try {
-      // finding by ID in the Thought Model
-      const thought = await Thought.findById(req.params._id);
+      // finding my ID in the Thought Model
+      const thought = await Thought.findOne({ _id: req.params._id })
+        .select('-__v');
+      console.log(thought);
       //calling the reaction array through the thought Model
       const reaction = thought.reactions;
 
@@ -102,7 +104,7 @@ module.exports = {
       thought.reactions = reaction;
 
       //save new information
-      await reaction.save();
+      await thought.save();
 
       //send back new reaction information
       res.json(newReaction);
