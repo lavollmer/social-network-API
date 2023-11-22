@@ -82,7 +82,7 @@ const addFriend = async (req, res) => {
 
 module.exports = { addFriend };
 
-Also received this code:
+Also received this code, however changed it:
 async removeThought(req, res) {
   try {
     const thought = await Thought.findOneAndDelete({ _id: req.params._id });

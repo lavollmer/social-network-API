@@ -84,6 +84,7 @@ module.exports = {
       // finding my ID in the Thought Model
       const thought = await Thought.findOne({ id: req.params._id }).select('-__v');
       console.log(thought);
+      console.log(reactionID);
       //calling the reaction array through the thought Model
       const reaction = thought.reactions;
       console.log(reaction);
