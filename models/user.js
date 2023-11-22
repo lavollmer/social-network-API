@@ -15,6 +15,7 @@ const userSchema = new Schema(
       lowercase: true,
       unique: true,
       required: 'Email address is required',
+      //validate email
       validate: function (validateEmail) {
         const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         return emailRegex.test(validateEmail);

@@ -1,4 +1,3 @@
-// const { ObjectId } = require('mongoose').Types;
 const { User } = require('../models');
 
 // Aggregate function to get the number of users overall

@@ -1,7 +1,4 @@
 const { Schema, model } = require('mongoose');
-const { v4: uuidv4 } = require('uuid');
-
-const reactionID = uuidv4();
 
 //reactionSchema subdocument
 const reactionSchema = new Schema({
@@ -23,9 +20,6 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
-      //Use a getter method to format the timestamp on query
-      //function pick NAME and timestamp is parameter
-      // get: (timestamp) => format.date(timestamp),
     },
     username: {
       type: String,
@@ -50,21 +44,6 @@ thoughtSchema.virtual('reactionCount').get(function () {
 //creating Model thought variable
 const Thought = model('thought', thoughtSchema);
 
-//Thought Model to create new instance including subdocument
-// const reactionData = [
-//   {
-//     reactionID: '655d6d427bac3b72067c00d6',
-//     reactionBody: 'Wow thats interesting',
-//     username: 'willow123',
-//     createdAt: '11/21/23'
-//   }
-// ]
-
-//creating data in Thought Model
-// Thought
-//   .create({ thoughtText: "I really love playing catch", createdAt: "11/20/23", username: "picasso", reactions: reactionData })
-//   .then(data => console.log(data))
-//   .catch(err => console.error(err));
 
 //exporting Thought Model
 module.exports = Thought;
