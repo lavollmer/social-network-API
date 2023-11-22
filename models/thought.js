@@ -50,7 +50,7 @@ const Thought = model('thought', thoughtSchema);
 //Thought Model to create new instance including subdocument
 const reactionData = [
   {
-    reactionID: { type: Schema.Types.ObjectId },
+    reactionID: '655d6d427bac3b72067c00d6',
     reactionBody: 'Wow thats interesting',
     username: 'willow123',
     createdAt: '11/21/23'
