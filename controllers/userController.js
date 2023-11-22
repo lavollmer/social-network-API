@@ -29,8 +29,7 @@ module.exports = {
   // Get a single user
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ id: req.params._id })
-        .select('-__v');
+      const user = await User.findOne({ id: req.params._id }).select('-__v');
 
       if (!user) {
         return res.status(404).json({ message: 'This is not a user' })

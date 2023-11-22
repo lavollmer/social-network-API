@@ -1,5 +1,4 @@
-const { ObjectId } = require('mongoose').Types;
-const { Thought } = require('../models');
+const { Thought } = require('../models/thought');
 
 // Aggregate function to get the number of thoughts overall
 const headCount = async () => {
@@ -29,16 +28,15 @@ module.exports = {
   // Get a single thought
   async getSingleThought(req, res) {
     try {
-      const thought = await Thought.findOne({ _id: req.params._id })
-        .select('-__v');
+      const thought = await Thought.findOne({ id: req.params._id }).select('-__v');
+      console.log(req.params._id);
 
       if (!thought) {
         return res.status(404).json({ message: 'This is not a thought' })
       }
 
-      res.json({
-        thought,
-      });
+      res.json({ thought });
+
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -83,11 +81,11 @@ module.exports = {
   async createReaction(req, res) {
     try {
       // finding my ID in the Thought Model
-      const thought = await Thought.findOne({ _id: req.params._id })
-        .select('-__v');
+      const thought = await Thought.findOne({ id: req.params._id }).select('-__v');
       console.log(thought);
       //calling the reaction array through the thought Model
       const reaction = thought.reactions;
+      console.log(reaction);
 
       //creating a newReaction based on the body information in the Thought Model
       const newReaction = {
@@ -96,6 +94,7 @@ module.exports = {
         username: req.body.username,
         createdAt: req.body.createdAt
       }
+      console.log(newReaction);
 
       //adding the new reaction onto the variable
       reaction.push(newReaction);
@@ -108,6 +107,7 @@ module.exports = {
 
       //send back new reaction information
       res.json(newReaction);
+
     } catch (err) {
       res.status(500).json(err);
     }
@@ -116,8 +116,8 @@ module.exports = {
   async deleteReaction(req, res) {
     try {
       const reaction = await Thought.findOneAndUpdate(
-        { reactionId: req.params.reactionId },
-        { $pull: { reactionId: req.params.reactionId } },
+        { reactionID: req.params.reactionID },
+        { $pull: { reactionID: req.params.reactionID } },
         { new: true }
       );
 
