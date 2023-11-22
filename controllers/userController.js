@@ -29,7 +29,7 @@ module.exports = {
   // Get a single user
   async getSingleUser(req, res) {
     try {
-      const user = await User.findOne({ _id: req.params._id })
+      const user = await User.findOne({ id: req.params._id })
         .select('-__v');
 
       if (!user) {
@@ -47,7 +47,7 @@ module.exports = {
   // create a new user
   async newUser(req, res) {
     try {
-      const user = await User.create({ _id, username, email, thoughts, friends });
+      const user = await User.create(req.body);
       res.json(user);
     } catch (err) {
       res.status(500).json(err);
@@ -94,8 +94,8 @@ module.exports = {
   async addNewFriend(req, res) {
     try {
       const { userId, friendId } = req.params;
-      const user = await User.findbyId({ userId });
-      const friend = await User.findbyId({ friendId });
+      const user = await User.findById(userId);
+      const friend = await User.findById(friendId);
 
       if (!user || !friend) {
         return res.status(404).json({ error: "User or friend does not exist" });
