@@ -15,19 +15,22 @@ This project was to build an API for a social network application.
   <a id="postman"></a>
 ## POSTMAN
 
-![Preview GET POSTMAN Screenshot]()
-![Preview UPDATE POSTMAN Screenshot]()
+GET Request for users:
+![Preview GET User POSTMAN Screenshot](./assets/img/POSTMAN-GET-User.png)
+
+GET Request for thoughts:
+![Preview GET Thought POSTMAN Screenshot](./assets/img/POSTMAN-GET-Thought.png)
 
   <a id="websitelinks"></a>
 ## Website Links
 
 * Github Repo:https://github.com/lavollmer/social-network-API
 
-* Video Demonstration: 
+* Video Demonstration: https://drive.google.com/file/d/1L7TRbsFJa2h9PfxZgbbg4uGaveY0U1Q8/view
 
   <a id="technicalrequirements"></a>
 ## Technical Requirements
-Technical requirements of the website included:
+Technical requirements for the application include:
 * Mongoose ORM
 * MongoDB
 * Express.js
@@ -40,15 +43,17 @@ Technical requirements of the website included:
 
 This project was done in conjunction with the U of MN Bootcamp Fall 2023.
 
-Tutoring services and TAs were used to help debug, help with logic and coding. 
+Tutoring services were used to help debug, help with logic and coding. 
 
-Validate Email: https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
-Timestamps: https://mongoosejs.com/docs/timestamps.html
-Date Code: https://mongoosejs.com/docs/guide.html
+Code was inspired from these websites:
+* Validate Email: https://stackoverflow.com/questions/18022365/mongoose-validate-email-syntax
+* Timestamps: https://mongoosejs.com/docs/timestamps.html
+* Date Code: https://mongoosejs.com/docs/guide.html
 
 Activity 17 inspired connection.js, index.js, and subdocument code/information. 
 
 Xpert Learning Assistant provided this code (some of it was changed or not needed):
+
 const User = require('../models/User');
 
 const addFriend = async (req, res) => {
@@ -82,7 +87,8 @@ const addFriend = async (req, res) => {
 
 module.exports = { addFriend };
 
-Also received this code, however changed it:
+Also received this code from Xpert Learning Assistant, however I changed it:
+
 async removeThought(req, res) {
   try {
     const thought = await Thought.findOneAndDelete({ _id: req.params._id });
