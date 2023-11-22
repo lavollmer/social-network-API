@@ -2,7 +2,7 @@
 
 ## Description
 
-This project was to build an API for a social network application. 
+This project was to build an API for a social network application where users are able to share their thoughts, and reactions. Additionally, they are able to create a user profile, update their profile and add friends as well. MongoDB was used as the document database.
 
 ## Table of Contents
 
