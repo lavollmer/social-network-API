@@ -62,7 +62,7 @@ module.exports = {
       const thought = await Thought.findOneAndUpdate({ _id: req.params.thoughtIdId }, { $set: req.body }, { new: true })
       res.json(thought);
     } catch (err) {
-      res.status(55).json(err.message);
+      res.status(500).json(err.message);
     }
   },
   // Delete a thought and remove them the social network

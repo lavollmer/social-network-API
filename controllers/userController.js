@@ -29,8 +29,7 @@ module.exports = {
   // Get a single user
   async getSingleUser(req, res) {
     try {
-      //userID???
-      const user = await User.findOne({ _id: req.params.userId })
+      const user = await User.findOne({ id: req.params._id })
         .select('-__v');
 
       if (!user) {
@@ -39,7 +38,6 @@ module.exports = {
 
       res.json({
         user,
-        user: await user(req.params.userId),
       });
     } catch (err) {
       console.log(err);
@@ -62,7 +60,7 @@ module.exports = {
       const user = await User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body }, { new: true })
       res.json(user);
     } catch (err) {
-      res.status(55).json(err.message);
+      res.status(500).json(err.message);
     }
   },
   // Delete a user and remove them the social network
