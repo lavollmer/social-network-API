@@ -82,6 +82,22 @@ const addFriend = async (req, res) => {
 
 module.exports = { addFriend };
 
+Also received this code:
+async removeThought(req, res) {
+  try {
+    const thought = await Thought.findOneAndDelete({ _id: req.params._id });
+
+    if (!thought) {
+      return res.status(404).json({ message: 'No such thought exists' });
+    }
+
+    res.json({ message: 'Thought successfully deleted' });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+}
+
   <a id="license"></a>
 
 ## License

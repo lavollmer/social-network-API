@@ -1,3 +1,4 @@
+const { ObjectId } = require('mongoose').Types;
 const { Thought } = require('../models/thought');
 
 // Aggregate function to get the number of thoughts overall
@@ -55,7 +56,7 @@ module.exports = {
   async updateThought(req, res) {
     try {
       // find and update by ID, set (reset) the body, and new is a new version set to true
-      const thought = await Thought.findOneAndUpdate({ _id: req.params._id }, { $set: req.body }, { new: true })
+      const thought = await Thought.findOneAndUpdate({ id: req.params._id }, { $set: req.body }, { new: true })
       res.json(thought);
     } catch (err) {
       res.status(500).json(err.message);
@@ -115,9 +116,9 @@ module.exports = {
   //Delete a reaction
   async deleteReaction(req, res) {
     try {
-      const reaction = await Thought.findOneAndUpdate(
-        { reactionID: req.params.reactionID },
-        { $pull: { reactionID: req.params.reactionID } },
+      const reaction = await Thought.findOneAndDelete(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: req.params.reactionId } },
         { new: true }
       );
 
